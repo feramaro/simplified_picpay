@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 @Service
 public class TransactionServiceImpl implements TransactionService {
@@ -43,35 +44,27 @@ public class TransactionServiceImpl implements TransactionService {
         if(payer.getUserType() == UserType.STORE) {
             throw new TransactionException("Store can't pay to other users");
         }
-        if(payer.getBalance() < transactionDTO.value()) {
+        if(!payer.canTransfer(transactionDTO.value())) {
             throw new TransactionException("Payer's don't have enough money in the account");
         }
 
         boolean hasAuthorization = authorizationService.authorize(payee, transactionDTO.value());
-        if(hasAuthorization) {
-            withdrawAccount(payer, transactionDTO.value());
-            depositIntoAccount(payee, transactionDTO.value());
-            userRepository.save(payer);
-            userRepository.save(payee);
-            log.info("Payerrrr:" + payer.getBalance());
-            Transaction transaction = new Transaction();
-            transaction.setPayee(payee);
-            transaction.setPayer(payer);
-            transaction.setAmount(transactionDTO.value());
-            transactionRepository.save(transaction);
-            notificationService.notify(transaction);
-        } else {
+        if(!hasAuthorization) {
             throw new NotAuthorizedException("Transaction not authorized!");
         }
+
+        payer.debit(transactionDTO.value());
+        payee.credit(transactionDTO.value());
+        userRepository.save(payer);
+        userRepository.save(payee);
+        Transaction transaction = new Transaction();
+        transaction.setPayee(payee);
+        transaction.setPayer(payer);
+        transaction.setAmount(transactionDTO.value());
+        transactionRepository.save(transaction);
+        CompletableFuture.runAsync(()-> notificationService.notify(transaction));
 
         return ResponseEntity.ok().build();
     }
 
-    private void withdrawAccount(User user, Double amount) {
-        user.setBalance(user.getBalance()-amount);
-    }
-
-    private void depositIntoAccount(User user, Double amount) {
-        user.setBalance(user.getBalance()+amount);
-    }
 }

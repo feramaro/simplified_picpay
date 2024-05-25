@@ -16,6 +16,7 @@ import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestTemplate;
 
+import java.math.BigDecimal;
 import java.net.UnknownHostException;
 import java.util.Map;
 
@@ -30,7 +31,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
     private String authorizationUrl;
 
     @Override
-    public boolean authorize(User user, Double amount) {
+    public boolean authorize(User user, BigDecimal amount) {
         try {
             ResponseEntity<AuthorizationDTO> authorization = restClient
                     .get()

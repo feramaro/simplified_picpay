@@ -2,15 +2,19 @@ package dev.feramaro.simplified_picpay.domain.user;
 
 import dev.feramaro.simplified_picpay.infra.exceptions.TransactionException;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "users")
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
@@ -34,6 +38,18 @@ public class User {
     private String password;
 
     @Column(nullable = false)
-    private Double balance;
+    private BigDecimal balance = BigDecimal.ZERO;
+
+    public boolean canTransfer(BigDecimal value) {
+        return balance.doubleValue() >= value.doubleValue();
+    }
+
+    public void debit(BigDecimal value) {
+        this.balance = this.balance.subtract(value);
+    }
+
+    public void credit(BigDecimal value) {
+        this.balance = this.balance.add(value);
+    }
 
 }

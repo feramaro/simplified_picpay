@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity
@@ -28,5 +29,5 @@ public class Transaction {
     private User payee;
 
     @Column(nullable = false)
-    private Double amount;
+    private BigDecimal amount = BigDecimal.ZERO;
 }
