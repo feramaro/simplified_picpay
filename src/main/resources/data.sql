@@ -1,0 +1,10 @@
+INSERT INTO users (user_type, full_name, cpf, email, password, balance) VALUES ('COMMON', 'João Silva', '42101748070', 'joao@example.com', 'senha123', 100.00);
+INSERT INTO users (user_type, full_name, cpf, email, password, balance) VALUES ('STORE', 'Loja B', '18404116946', 'maria@example.com', 'senha456', 500.00);
+INSERT INTO users (user_type, full_name, cpf, email, password, balance) VALUES ('COMMON', 'Pedro Oliveira', '26109166472', 'pedro@example.com', 'senha789', 200.00);
+INSERT INTO users (user_type, full_name, cpf, email, password, balance) VALUES ('STORE', 'Loja D', '76439494090', 'ana@example.com', 'senhaabc', 700.00);
+INSERT INTO users (user_type, full_name, cpf, email, password, balance) VALUES ('COMMON', 'Luiz Carvalho', '06204117165', 'luiz@example.com', 'senhadef', 300.00);
+INSERT INTO users (user_type, full_name, cpf, email, password, balance) VALUES ('COMMON', 'Mariana Costa', '72943408468', 'mariana@example.com', 'senhaghi', 400.00);
+INSERT INTO users (user_type, full_name, cpf, email, password, balance) VALUES ('COMMON', 'Carlos Rocha', '17487263312', 'carlos@example.com', 'senhajkl', 250.00);
+INSERT INTO users (user_type, full_name, cpf, email, password, balance) VALUES ('COMMON', 'Juliana Martins', '90255451733', 'juliana@example.com', 'senhamno', 150.00);
+INSERT INTO users (user_type, full_name, cpf, email, password, balance) VALUES ('STORE', 'Loja I', '02353396011', 'rafaela@example.com', 'senhaqrs', 600.00);
+INSERT INTO users (user_type, full_name, cpf, email, password, balance) VALUES ('STORE', 'Loja J', '50903374110', 'gustavo@example.com', 'senhatuv', 800.00);

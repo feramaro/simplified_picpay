@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: simplified_picpay
+  datasource:
+    url: jdbc:h2:mem:db
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+  h2:
+    console:
+      enabled: true
+
+app:
+  authorization-url: https://util.devi.tools/api/v2/authorize
+  notification-url: https://util.devi.tools/api/v1/notify
+
+
+
