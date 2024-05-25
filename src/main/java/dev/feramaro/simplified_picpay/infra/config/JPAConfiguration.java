@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-public class JPAConfig {
+public class JPAConfiguration {
 
     @Bean
     public PlatformTransactionManager transactionManager() {
