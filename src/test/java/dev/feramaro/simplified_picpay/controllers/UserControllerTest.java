@@ -77,13 +77,11 @@ public class UserControllerTest {
     @Test
     void whenCreateUserThenError() {
         when(userService.createNewUser(userDTO)).thenThrow(new UserCreationException("User exists on database!"));
-        try {
-            userController.createNewUser(userDTO);
-            fail("Expected UserCreationException");
-        } catch (UserCreationException ex) {
-            assertEquals(ex.getClass(), UserCreationException.class);
-            assertEquals(ex.getMessage(), "User exists on database!");
-        }
+
+        UserCreationException thrown = assertThrows(UserCreationException.class, () -> {
+           userController.createNewUser(userDTO);
+        });
+        assertEquals(thrown.getMessage(), "User exists on database!");
     }
 
     private void startUser() {
