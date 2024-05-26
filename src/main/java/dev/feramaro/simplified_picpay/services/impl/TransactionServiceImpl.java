@@ -40,7 +40,6 @@ public class TransactionServiceImpl implements TransactionService {
     public ResponseEntity<?> makeTransaction(TransactionDTO transactionDTO) {
         User payer = userRepository.findById(transactionDTO.payer()).orElseThrow(() -> new TransactionException("Payer not found"));
         User payee = userRepository.findById(transactionDTO.payee()).orElseThrow(() -> new TransactionException("Payee not found"));
-
         if(payer.getUserType() == UserType.STORE) {
             throw new TransactionException("Store can't pay to other users");
         }
