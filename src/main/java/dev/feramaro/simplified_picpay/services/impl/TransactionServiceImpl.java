@@ -11,20 +11,16 @@ import dev.feramaro.simplified_picpay.repositories.UserRepository;
 import dev.feramaro.simplified_picpay.services.AuthorizationService;
 import dev.feramaro.simplified_picpay.services.NotificationService;
 import dev.feramaro.simplified_picpay.services.TransactionService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 @Service
 public class TransactionServiceImpl implements TransactionService {
 
-    private static final Logger log = LoggerFactory.getLogger(TransactionServiceImpl.class);
     @Autowired
     private TransactionRepository transactionRepository;
     @Autowired

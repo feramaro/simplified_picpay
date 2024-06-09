@@ -1,6 +1,5 @@
 package dev.feramaro.simplified_picpay.domain.user;
 
-import dev.feramaro.simplified_picpay.infra.exceptions.TransactionException;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

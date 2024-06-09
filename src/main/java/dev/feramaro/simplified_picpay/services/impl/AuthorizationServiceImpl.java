@@ -4,7 +4,6 @@ import dev.feramaro.simplified_picpay.domain.user.User;
 import dev.feramaro.simplified_picpay.dto.authorization.AuthorizationDTO;
 import dev.feramaro.simplified_picpay.infra.exceptions.NotAuthorizedException;
 import dev.feramaro.simplified_picpay.services.AuthorizationService;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,13 +11,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClient;
-import org.springframework.web.client.RestTemplate;
+
 
 import java.math.BigDecimal;
-import java.net.UnknownHostException;
-import java.util.Map;
+
 
 @Service
 @Slf4j
@@ -30,6 +27,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
     @Value("${app.authorization-url}")
     private String authorizationUrl;
 
+    @SuppressWarnings("null")
     @Override
     public boolean authorize(User user, BigDecimal amount) {
         try {

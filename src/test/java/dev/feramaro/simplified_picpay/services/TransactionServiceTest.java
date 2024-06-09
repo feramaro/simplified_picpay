@@ -1,6 +1,24 @@
 package dev.feramaro.simplified_picpay.services;
 
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.math.BigDecimal;
+import java.util.Optional;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
+
 import dev.feramaro.simplified_picpay.domain.user.User;
 import dev.feramaro.simplified_picpay.domain.user.UserType;
 import dev.feramaro.simplified_picpay.dto.transaction.TransactionDTO;
@@ -10,21 +28,6 @@ import dev.feramaro.simplified_picpay.repositories.UserRepository;
 import dev.feramaro.simplified_picpay.services.impl.AuthorizationServiceImpl;
 import dev.feramaro.simplified_picpay.services.impl.TransactionServiceImpl;
 import dev.feramaro.simplified_picpay.services.impl.UserServiceImpl;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.context.SpringBootTest;
-
-import java.math.BigDecimal;
-import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
 
 @SpringBootTest
 public class TransactionServiceTest {

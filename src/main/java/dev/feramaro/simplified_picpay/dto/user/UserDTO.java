@@ -1,6 +1,6 @@
 package dev.feramaro.simplified_picpay.dto.user;
 
-import dev.feramaro.simplified_picpay.domain.user.UserType;
+
 import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.br.CPF;
 
